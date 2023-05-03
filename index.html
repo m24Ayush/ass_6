@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+</head>
+
+<style>
+    .center{
+        text-align: center;
+    }
+    button{
+        padding: 10px;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="center">
+        <h1>Guess The Number Game</h1>
+        <button onclick="start()">Start the Game</button>
+        <div class="display"></div>
+    </div>
+</body>
+<script>
+    
+    function delay(){
+        setTimeout(() => {
+
+        }, 1500);
+    }
+    function start(){
+        let win = false, c=0;
+        let display = document.querySelector(".display");
+        display.innerHTML = " ";
+        let num = prompt("Enter a number between 1-100: ");
+        if(num<1 || num>100 || isNaN(num)){
+            alert("Enter a valid number between 1-100: ");
+            start();
+        }
+        else{
+            console.log(num);
+            
+            for (let i = 0; i < 5; i++) {
+                delay();
+                let rand_num = Math.floor((Math.random()*100)+1);
+                console.log(rand_num);
+                let h1 = document.createElement("h1");
+                h1.innerHTML = `Computer Guess: ${rand_num}`;
+                display.append(h1);
+                if(rand_num == num){
+                    win = true;
+                    c = i;
+                    break;
+                }
+            }
+
+            let p = document.createElement("p");
+            if (win == true) {
+                p.innerHTML = `<p>Computer guess in ${c} chance and Wins.</p>`;
+                display.append(p);
+            }
+            else{
+                p.innerHTML = "<p>You Wins.</p>";
+                display.append(p);
+
+            }
+            
+        }
+    }
+</script>
+</html>
